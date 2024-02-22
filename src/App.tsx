@@ -36,7 +36,7 @@ export const App: React.FC = () => {
   const translateText = async (text: string) => {
     try {
       const response = await fetch(
-        `https://translation.googleapis.com/language/translate/v2?key=AIzaSyCFoI09WNVyfQgJXmFr0WHr8IrUUX48SIo&source=en&target=pt&format=text&q=${encodeURIComponent(
+        `https://translation.googleapis.com/language/translate/v2?key=${apiKey}&source=en&target=pt&format=text&q=${encodeURIComponent(
           text
         )}`
       );
@@ -93,7 +93,7 @@ export const App: React.FC = () => {
           </div>
         </div>
         <button onClick={startListening} disabled={listening}>
-          {listening ? "Ouvindo..." : <img src="/assets/micro.png" style={{width:"60px"}}/>}
+          {listening ? "Ouvindo..." : <img src="/assets/micro.png" style={{width:"60px"}} alt="microphone"/>}
         </button>
       </div>
     </div>
