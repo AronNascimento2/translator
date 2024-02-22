@@ -8,7 +8,11 @@ interface TranslationData {
     }[];
   };
 }
-const recognition = ('webkitSpeechRecognition' in window) ? new window.webkitSpeechRecognition() : null;
+const recognition =
+  "webkitSpeechRecognition" in window
+    ? new (window as any).webkitSpeechRecognition()
+    : null;
+
 if (recognition) {
   recognition.lang = "en-US";
 }
@@ -28,7 +32,7 @@ export const App: React.FC = () => {
   }, [inputText]);
 
   const apiKey = process.env.API_KEY;
-console.log(apiKey)
+  console.log(apiKey);
   const translateText = async (text: string) => {
     try {
       const response = await fetch(
@@ -53,7 +57,7 @@ console.log(apiKey)
   const startListening = () => {
     setListening(true);
     if (recognition) {
-      recognition.onresult = (event) => {
+      recognition.onresult = (event: any) => {
         const speechToText = event.results[0][0].transcript;
         setInputText(speechToText);
         recognition.stop();
