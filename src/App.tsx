@@ -36,7 +36,7 @@ export const App: React.FC = () => {
   const translateText = async (text: string) => {
     try {
       const response = await fetch(
-        `https://translation.googleapis.com/language/translate/v2?key=${apiKey}&source=en&target=pt&format=text&q=${encodeURIComponent(
+        `https://translation.googleapis.com/language/translate/v2?key=AIzaSyCFoI09WNVyfQgJXmFr0WHr8IrUUX48SIo&source=en&target=pt&format=text&q=${encodeURIComponent(
           text
         )}`
       );
@@ -78,25 +78,24 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <h1>Translator</h1>
-      <p>Digite ou fale palavras em inglês</p>
-      <div className="inputs">
-        <textarea
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder="Fale ou digite aqui..."
-          rows={4}
-          cols={50}
-        />
+      <p className="description">Digite ou fale palavras em inglês</p>
+      <div className="wrapper">
+        <div className="inputs">
+          <textarea
+            value={inputText}
+            onChange={handleInputChange}
+            placeholder="Fale ou digite aqui..."
+            rows={4}
+            cols={50}
+          />
+          <div className="translated-container">
+            <p>{translatedText}</p>
+          </div>
+        </div>
         <button onClick={startListening} disabled={listening}>
-          {listening ? "Ouvindo..." : "Iniciar reconhecimento de voz"}
+          {listening ? "Ouvindo..." : <img src="/assets/micro.png" style={{width:"60px"}}/>}
         </button>
       </div>
-      {translatedText && (
-        <div>
-          <h2>Tradução</h2>
-          <p>{translatedText}</p>
-        </div>
-      )}
     </div>
   );
 };
